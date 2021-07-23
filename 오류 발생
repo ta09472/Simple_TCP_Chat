@@ -1,0 +1,12 @@
+ 오류 - OSError: [Errno 48] Address already in use
+ 
+ 발생 원인 : run 하려는 Address가 이미 사용 중일 때 발생 
+ 
+ 해결방법
+  1. 터미널 사용하여 해결
+  1-1. ps -ef | grep python 입력
+  1-2. PID 값을 알아낸 후 kill (찾아낸 PID) 입력
+
+  2. 활성상태보기로 해결
+  2-1. python 검색
+  2-2. 강제종료
