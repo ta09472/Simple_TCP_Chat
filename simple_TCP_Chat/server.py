@@ -12,7 +12,7 @@ port = 55554
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #  1. 인터넷 소켓을 사용 2. TCP 사용
 server.bind((host, port)) # 3. 명시한 local_IP 사용 , 4. 명시한 Port 사용 
-server.listen() # 서버가 클라이언트의 접속을 허용
+server.listen() # 서버가 클라이언트의 접속을 허용(수신모드)
 
 clients = [] # 클라이언트를 저장할 리스트
 nicknames = [] # 클라이언트가 지정한 닉네임을 저장할 리스트
@@ -37,8 +37,8 @@ def handle(client): # 클라이언트를 매개변수로 받아들인다.
 
 def receive(): # 서버 실행 후 연결을 시도하는 클라이언트들의 요청을 받는다.
     while True:
-        client, address = server.accept() # 서버에 클라이언트가 연결되면 해당 클라이언트의 주소를 받아서 출력한다.
-        print(f"connected with {str(address)}")
+        client, address = server.accept() # 클라이언트가 서버에 연결을 시도
+        print(f"connected with {str(address)}") # 서버에 클라이언트가 연결되면 해당 클라이언트의 주소를 받아서 출력한다.
 
         client.send("NICK".encode('ascii')) # 클라이언트가 연결돠면 해당 문자열을 보내 닉네임이 요청되었음을 알린다.
         nickname = client.recv(1024).decode('ascii') # 후 해당 클라이언트와 클라이언트가 송출한 닉네임을 각각 리스트에 추가한다.
